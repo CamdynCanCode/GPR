@@ -53,13 +53,39 @@
     @media (max-width: 600px) {
       .header h1 { font-size: 1.4rem; padding: 8px 14px; }
     }
+
+    .account {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .account .avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 2px solid #facc15;
+    }
+
+    .account .username {
+      font-weight: 600;
+      color: #facc15;
+    }
   </style>
 </head>
 <body>
   <div class="container">
 
+    <div class="account">
+      <img src="images/avatar.png" alt="User Avatar" class="avatar">
+      <span class="username">Camdyn Clark</span>
+    </div>
+
+    
     <div class="header">
-      <h1>GPR Rover Scan Dashboard</h1>
+      <h1>Banna Slug Scan Dashboard</h1>
     </div>
 
     <div class="card-grid">
@@ -80,7 +106,7 @@
     </div>
 
     <div class="footer">
-      © 2026 GPR Rover | FLL Innovation Project Prototype Interface
+      © 2026 Banna Slug | DeBRICKable Me
     </div>
 
   </div>
