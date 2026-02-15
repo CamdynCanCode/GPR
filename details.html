@@ -28,12 +28,6 @@
     <div class="details-coords" id="detailsCoords"></div>
     <div class="details-description" id="detailsDesc"></div>
 
-    <div class="slider-container">
-      <label for="depth">Scan Depth (meters)</label>
-      <input type="range" id="depth" min="1" max="10" value="5" />
-      <span id="depthValue">5m</span>
-    </div>
-
     <div class="footer">
       © 2026 GPR Rover | FLL Innovation Project Prototype Interface
     </div>
@@ -82,15 +76,6 @@
       coordsEl.textContent = '';
     }
 
-    // Slider functionality: simulate scan depth visually
-    const depthSlider = document.getElementById('depth');
-    const depthValue = document.getElementById('depthValue');
-
-    depthSlider.addEventListener('input', function() {
-      const value = depthSlider.value;
-      depthValue.textContent = value + 'm';
-      // Simulate scanning by adjusting brightness
-      imgEl.style.filter = `brightness(${50 + value*5}%)`;
     });
   </script>
 </body>
