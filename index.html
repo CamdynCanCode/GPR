@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPR Rover Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      background: #facc15;
+      color: #0f172a;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .label {
+      background: #facc15;
+      color: #0f172a;
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .controls {
+      margin-top: 40px;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .controls h2 {
+      margin-bottom: 15px;
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 1.4rem;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <h1>GPR Rover Scan Dashboard</h1>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Scan Output">
+        <div class="label">Catacomb Detected - Dublin, Ireland</div>
+      </div>
+
+      <div class="card">
+        <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Scan Output">
+        <div class="label">Wooden Tomb - Manfal, Egypt</div>
+      </div>
+
+      <div class="card">
+        <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Scan Output">
+        <div class="label">Metal Structure - Sample Region</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <h2>Scan Controls</h2>
+      <div class="slider-container">
+        <label for="depth">Scan Depth (meters)</label>
+        <input type="range" id="depth" min="1" max="10" value="5" />
+        <span id="depthValue">5m</span>
+      </div>
+    </div>
+
+    <div class="footer">
+      © 2026 GPR Rover | FLL Innovation Project Prototype Interface
+    </div>
+
+  </div>
+
+  <script>
+    const depthSlider = document.getElementById('depth');
+    const depthValue = document.getElementById('depthValue');
+
+    depthSlider.addEventListener('input', function() {
+      depthValue.textContent = depthSlider.value + 'm';
+    });
+  </script>
+</body>
+</html>
