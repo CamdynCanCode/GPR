@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPR Rover Scan Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; background: #0f172a; color: white; }
+    body { display: flex; flex-direction: column; }
+    .container { max-width: 900px; margin: auto; flex: 1; padding: 20px; display: flex; flex-direction: column; }
+    .back { margin-bottom: 20px; color: #facc15; text-decoration: none; font-weight: 600; }
+    .details-img { width: 100%; border-radius: 12px; margin-bottom: 20px; transition: filter 0.3s ease; }
+    .details-title { font-size: 1.8rem; margin-bottom: 10px; }
+    .details-coords { font-size: 1rem; margin-bottom: 10px; font-style: italic; color: #facc15; }
+    .details-description { font-size: 1rem; line-height: 1.5; margin-bottom: 20px; }
+    .slider-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    input[type="range"] { width: 100%; }
+    .footer { text-align: center; margin-top: auto; font-size: 0.85rem; opacity: 0.7; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back">&larr; Back to Dashboard</a>
+    <img src="" alt="Scan Detail" class="details-img" id="detailsImg">
+    <div class="details-title" id="detailsTitle"></div>
+    <div class="details-coords" id="detailsCoords"></div>
+    <div class="details-description" id="detailsDesc"></div>
+
+    <div class="slider-container">
+      <label for="depth">Scan Depth (meters)</label>
+      <input type="range" id="depth" min="1" max="10" value="5" />
+      <span id="depthValue">5m</span>
+    </div>
+
+    <div class="footer">
+      © 2026 GPR Rover | FLL Innovation Project Prototype Interface
+    </div>
+  </div>
+
+  <script>
+    // All scan data frontend-only
+    const data = {
+      catacomb: {
+        title: 'Catacomb Detected - Dublin, Ireland',
+        img: 'images/Catacomb.png',
+        coords: '53.25986° N, 6.30182° W',
+        desc: 'Your scan detected an ancient catacomb structure in Dublin, Ireland.'
+      },
+      woodentomb: {
+        title: 'Wooden Tomb - Manfal, Egypt',
+        img: 'images/WoodenTomb.png',
+        coords: '27.26558° N, 30.97613° E',
+        desc: 'Your scan detected an ancient catacomb structure in Manfal, Egypt.'
+      },
+      metalstructure: {
+        title: 'Metal Structure - Sample Region',
+        img: 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
+        coords: 'Unknown',
+        desc: 'Metallic structures detected in this region. Further scans required to identify composition and layout.'
+      }
+    };
+
+    // Get id from URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    const imgEl = document.getElementById('detailsImg');
+    const titleEl = document.getElementById('detailsTitle');
+    const descEl = document.getElementById('detailsDesc');
+    const coordsEl = document.getElementById('detailsCoords');
+
+    if (data[id]) {
+      imgEl.src = data[id].img;
+      titleEl.textContent = data[id].title;
+      descEl.textContent = data[id].desc;
+      coordsEl.textContent = `Coordinates: ${data[id].coords}`;
+    } else {
+      titleEl.textContent = 'Scan Not Found';
+      descEl.textContent = 'No details are available for this selection.';
+      coordsEl.textContent = '';
+    }
+
+    // Slider functionality: simulate scan depth visually
+    const depthSlider = document.getElementById('depth');
+    const depthValue = document.getElementById('depthValue');
+
+    depthSlider.addEventListener('input', function() {
+      const value = depthSlider.value;
+      depthValue.textContent = value + 'm';
+      // Simulate scanning by adjusting brightness
+      imgEl.style.filter = `brightness(${50 + value*5}%)`;
+    });
+  </script>
+</body>
+</html>
